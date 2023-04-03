@@ -1,11 +1,14 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
 import pyautogui, time
 from perfil import Perfil
+import selenium
 
-nomeCadastros = str(input('Insira o nome a ser colocado nos cadastros: '))
+nomeCadastros = str(input('Nome a ser colocado nos cadastros: '))
 
-codigoCentroCusto = str(input('Insira o código para cadastro de Centro de Custo e Plano de conta: '))
+codigoCentroCusto = str(input('Código para cadastro de Centro de Custo e Plano de conta: '))
 
-formulaSisAvaliacao = str(input('Qual será a formula ultilizada: '))
+formulaSisAvaliacao = str(input('Fórmula do sistema de Avaliação a ser ultilizada: '))
 
 pyautogui.PAUSE = 1.0
 
@@ -22,32 +25,24 @@ class Perfis(Perfil):
         self.telefone = telefone
 
 
-class AbrirNavegador:
+class AbrirJacad:
+    driver = webdriver.Firefox()
+    driver.get("http://192.168.10.102")
+    driver.find_element(By.XPATH, "/html/body/div/div[1]/div/div/div/div[2]/div[1]/div/div[2]/p/a").click()
 
-    pyautogui.alert("Nâo mexa no computador, código rodando!")
-
-
-    pyautogui.press('win')
-    pyautogui.write('opera')
-    pyautogui.press('enter')
     time.sleep(1)
 
-class AbrirJacad:
+    with pyautogui.hold('ctrlleft'):
+        pyautogui.press('j')
+
+    pyautogui.press('enter', presses=2, interval=0.5)
+
+    time.sleep(3)
+    pyautogui.press('tab', presses=2, interval=0.5)
+    pyautogui.press('enter')
 
     usuario = 'root'
     senha = '123123'
-
-    pyautogui.write('192.168.10.18')
-    pyautogui.press('enter')
-    time.sleep(1)
-    pyautogui.click(x=320, y=396)
-    time.sleep(0.5)
-    pyautogui.doubleClick(x=1544, y=200)
-    time.sleep(1)
-    pyautogui.press('tab', presses=2, interval=0.3)
-    pyautogui.press('enter')
-
-
     #Aguardar JACAD abrir
     time.sleep(12)
     pyautogui.write(usuario)    
