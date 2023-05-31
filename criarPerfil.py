@@ -2,7 +2,6 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import pyautogui, time
 from perfil import Perfil
-import selenium
 
 nomeCadastros = str(input('Nome a ser colocado nos cadastros: '))
 
@@ -28,7 +27,7 @@ class Perfis(Perfil):
 class AbrirJacad:
     driver = webdriver.Firefox()
     driver.get("http://192.168.10.102")
-    driver.find_element(By.XPATH, "/html/body/div/div[1]/div/div/div/div[2]/div[1]/div/div[2]/p/a").click()
+    dowloadJacad = driver.find_element(By.XPATH, "/html/body/div/div[1]/div/div/div/div[2]/div[1]/div/div[2]/p/a").click()
 
     time.sleep(1)
 
@@ -41,10 +40,12 @@ class AbrirJacad:
     pyautogui.press('tab', presses=2, interval=0.5)
     pyautogui.press('enter')
 
+    driver.quit()
+
     usuario = 'root'
     senha = '123123'
     #Aguardar JACAD abrir
-    time.sleep(12)
+    time.sleep(10)
     pyautogui.write(usuario)    
     pyautogui.press('tab')
     pyautogui.write(senha) 
@@ -54,7 +55,7 @@ class AbrirJacad:
     time.sleep(8)
     #clicando no Perfil
 
-    time.sleep(5)
+    time.sleep(3)
     pyautogui.click(x=245, y=100)
 
     with pyautogui.hold('ctrlleft'):
@@ -88,7 +89,7 @@ class CadastrarPerfil:
         pyautogui.write(cpf)
 
         #Data de Nascimento
-        pyautogui.press('tab', presses=6, interval=0.5)
+        pyautogui.press('tab', presses=7, interval=0.5)
         pyautogui.write(nasc)
 
         #Sexo
@@ -109,6 +110,8 @@ class CadastrarPerfil:
 for i in range(0, 5):
     time.sleep(1)
     CadastrarPerfil()
+
+time.sleep(2)
 
 class CursoBase:
 
@@ -150,11 +153,15 @@ class CentroDeCusto:
 
     # Abrir tela de Centro de Custo
     pyautogui.click(x=187, y=46)
-    pyautogui.click(x=349, y=880)
-    pyautogui.click(x=645, y=629)
+    pyautogui.moveTo(x=503, y=907)
+    pyautogui.click(x=850, y=454)
     time.sleep(1.5)
-    pyautogui.click(x=745, y=423)
+
+    #Escreve descrição Centro de Custo
+    pyautogui.click(x=750, y=429)
     pyautogui.write(nomeCadastros)
+
+    #Escreve código
     pyautogui.press('tab')
     pyautogui.write(codigoCentroCusto)
 
@@ -163,7 +170,7 @@ class CentroDeCusto:
     time.sleep(2)
 
 
-class criarPeriodo:
+class CriarPeriodo:
     time.sleep(1)
     pyautogui.click(x=106, y=50)
     pyautogui.click(x=161, y=366)
@@ -187,7 +194,7 @@ class criarPeriodo:
     with pyautogui.hold('ctrlleft'):
         pyautogui.press('s')
 
-class subPeriodo:
+class SubPeriodo:
 
     #Cadastro do 1° Semestre    
     pyautogui.click(x=709, y=278) #Clicando no menu academico
@@ -214,8 +221,7 @@ class subPeriodo:
 
 
     #Cadastro do 2° Semestre
-    pyautogui.click(x=709, y=278)
-    pyautogui.click(x=547, y=420)
+    pyautogui.press('space')
     
     pyautogui.press('tab', presses=2, interval=0.5)
     pyautogui.write('2° Semestre')
@@ -238,8 +244,8 @@ class subPeriodo:
 
 class CriarSistemaAvaliacao:
     pyautogui.click(x=34, y=49)
-    pyautogui.moveTo(x=220, y=198)
-    pyautogui.click(x=458, y=682)
+    pyautogui.moveTo(x=340, y=200)
+    pyautogui.click(x=635, y=711)
 
     with pyautogui.hold('ctrlleft'):
         pyautogui.press('i')
@@ -318,10 +324,10 @@ class Curso:
     pyautogui.write(nomeCadastros)
     pyautogui.press('enter')
     pyautogui.press('tab', presses=2, interval=0.5)
-    pyautogui.write('0')
+    pyautogui.write('3')
     pyautogui.press('enter')
     pyautogui.press('tab', presses=8, interval=0.4)
-    pyautogui.write('SUS')
+    pyautogui.write('Presencial')
     pyautogui.press('tab', presses=3, interval=0.5)
     for i in range(0, 12):
         time.sleep(0.5)
@@ -329,24 +335,19 @@ class Curso:
         pyautogui.write('100')
 
     pyautogui.press('tab', presses=2, interval=0.5)
-    pyautogui.write('1')
+    pyautogui.write('4')
     pyautogui.press('tab')
     pyautogui.write('8')
     pyautogui.press('tab', presses=3, interval=0.5)
-    pyautogui.write('7')
-    pyautogui.press('enter')    
+    pyautogui.write('7')    
     pyautogui.press('tab')
     pyautogui.write('3')
-    pyautogui.press('enter')
     pyautogui.press('tab')
     pyautogui.write('75')
-    pyautogui.press('enter')
     pyautogui.press('tab', presses=2, interval=0.5)
     pyautogui.write('6')
-    pyautogui.press('enter')
     pyautogui.press('tab')
     pyautogui.write('6')
-    pyautogui.press('enter')
     with pyautogui.hold('ctrlleft'):
         pyautogui.press('s')
             

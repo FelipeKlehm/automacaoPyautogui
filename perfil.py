@@ -43,7 +43,7 @@ class Perfil:
     
     def monta_cpf(self):
         self.cpf = CPF.generate()
-        print(f'{self.cpf[:3]}.{self.cpf[3:6]}.{self.cpf[6:9]}-{self.cpf[9:]}')
+        print(f'{self.cpf[:3]}.{self.cpf[3:6]}.{self.cpf[6:9]}-{self.cpf    [9:]}')
         return self.cpf
 
     # Metodo de gerar Email
